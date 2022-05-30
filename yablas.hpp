@@ -15,7 +15,8 @@
 // DASUM - sum of absolute values
 // IDAMAX - index of max abs value
 
-void dswap(const int32_t N, double *DX, const int32_t incX,  double *DY, const int32_t incY);
+// void dswap(const int32_t N, double *DX, const int32_t incX,  double *DY, const int32_t incY);
+void dswap(const int32_t N, py::array_t<double> DX, const int32_t incX,  py::array_t<double> DY, const int32_t incY);
 void dscal(const int32_t N, const int32_t DA, double *DX, const int32_t incX);
 void dcopy(const int32_t N, const double *DX, const int32_t incX, double *DY, const int32_t incY);
 void daxpy(const int32_t N, const double DA, const double *DX, const int32_t incX, double *DY, const int32_t incY);
@@ -54,9 +55,9 @@ void dtrsv( char Uplo,
             char TransA, char Diag,
             const int32_t N, const double *A, const int32_t lda, double *X,
             const int32_t incX);
-void dger( const int32_t M, const int32_t N,
-                const double alpha, const double *X, const int32_t incX,
-                const double *Y, const int32_t incY, double *A, const int32_t lda);
+void dger(  const int32_t M, const int32_t N,
+            const double alpha, const double *X, const int32_t incX,
+            const double *Y, const int32_t incY, double *A, const int32_t lda);
 
 
 /*
@@ -87,6 +88,12 @@ void dsyrk( char Uplo,
             const double beta, double *C, const int32_t ldc);
 
 void dtrmm( char Side,
+            char Uplo, char TransA,
+            char Diag, const int32_t M, const int32_t N,
+            const double alpha, const double *A, const int32_t lda,
+            double *B, const int32_t ldb);
+
+void dtrsm( char Side,
             char Uplo, char TransA,
             char Diag, const int32_t M, const int32_t N,
             const double alpha, const double *A, const int32_t lda,
